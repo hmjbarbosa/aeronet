@@ -1,0 +1,23 @@
+== RONDONIA
+Jamari          ;   80 Days [  0.219 Years]; Start Date: 08-SEP-1992; Latest Date: 29-OCT-1993
+Porto_Velho     ;   56 Days [  0.153 Years]; Start Date: 31-DEC-2000; Latest Date: 17-SEP-2012
+Porto_Velho_UNIR;   82 Days [  0.225 Years]; Start Date: 13-SEP-2012; Latest Date: 24-DEC-2012
+Jaru_Reserve    ;  116 Days [  0.318 Years]; Start Date: 30-JUN-2002; Latest Date: 02-NOV-2002
+Ji_Parana       ;  111 Days [  0.304 Years]; Start Date: 02-AUG-1994; Latest Date: 18-JUL-2002
+Ji_Parana_UNIR  ;  132 Days [  0.362 Years]; Start Date: 15-JUL-2002; Latest Date: 17-NOV-2002
+Abracos_Hill    ; 2080 Days [  5.699 Years]; Start Date: 22-JAN-1999; Latest Date: 18-OCT-2005
+Ji_Parana_SE    ; 1534 Days [  4.203 Years]; Start Date: 10-MAR-2000; Latest Date: 28-MAR-2013
+
+== MATO GROSSO
+Alta_FLoresta   ; 4820 Days [ 13.205 Years]; Start Date: 20-JUN-1993; Latest Date: 27-MAR-2013
+
+== PARA
+Belterra        ; 1940 Days [  5.315 Years]; Start Date: 27-FEB-1996; Latest Date: 02-MAY-2005
+
+== ACRE
+Rio_Branco      ; 3816 Days [ 10.455 Years]; Start Date: 04-JAN-1994; Latest Date: 27-MAR-2013
+
+== AMAZONAS
+Balbina         ; 1221 Days [  3.345 Years]; Start Date: 25-JAN-1993; Latest Date: 22-APR-2003
+Manaus          ;  207 Days [  0.567 Years]; Start Date: 01-JAN-2008; Latest Date: 11-DEC-2008
+Manaus_EMBRAPA  ;  575 Days [  1.575 Years]; Start Date: 31-DEC-2000; Latest Date: 28-MAR-2013
