@@ -1,5 +1,7 @@
-function []=aeronet_plot_ONEILL_box(jd, aot, ylab, mdry, mwet)
-ylog=0;
+function []=aeronet_plot_ONEILL_box(jd, aot, ylab, mdry, mwet, ylog)
+
+if ~exist('ylog','var') ylog=0; end
+
 % large horizontal plot
 set(gcf,'position',[300,300,800,300]); % units in pixels!
 set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3])
@@ -13,15 +15,22 @@ for i=1:size(aot,1)
   XX(i,data(2))=aot(i,1);
 end
 boxplot(XX,'whisker',1000);
-pos=get(gca,'position');
 % set vertical scale
-maxaod=max(aot)*1.2;
+%maxval=max(aot)*1.2;
+%minval=0;
+yval=get(gca,'ylim'); minval=yval(1); maxval=yval(2);
 if (ylog)
-  ylim([0 maxaod]); 
+  if (minval<0)
+    minval=min(aot(:,1));
+  end
+  maxval=10^(ceil(log10(maxval)));
+  minval=10^(floor(log10(minval)));
+  ylim([minval maxval]); 
   set(gca,'yscale','log');
 else
-  ylim([0.01 maxaod]); 
+  ylim([minval maxval]); 
 end
+pos=get(gca,'position');
 ylabel(ylab,'fontsize',12);
 xlabel('Months','fontsize',12);
 grid on;
@@ -30,9 +39,9 @@ grid on;
 %-----------------------------------------------------------------------
 sub=subplot('position',[0.83 pos(2)+0.005 0.15 pos(4)-0.005]);
 if (ylog)
-  bins=10.^[-2:log10(maxaod)/100:log10(maxaod)];
+  bins=10.^[log10(minval):(log10(maxval)-log10(minval))/100:log10(maxval)];
 else
-  bins=[0:maxaod/100:maxaod];
+  bins=[minval:(maxval-minval)/100:maxval];
 end
 hdry=histc(reshape(XX(:,mdry),[],1),bins);
 stairs(hdry/sum(hdry),bins,'r','linewidth',2); 
@@ -41,10 +50,12 @@ hwet=histc(reshape(XX(:,mwet),[],1),bins);
 stairs(hwet/sum(hwet),bins,'b','linewidth',2); 
 % set vertical scale
 if (ylog)
-  ylim([0 maxaod]); 
+  maxval=10^(ceil(log10(maxval)));
+  minval=10^(floor(log10(minval)));
+  ylim([minval maxval]); 
   set(gca,'yscale','log');
 else
-  ylim([0.01 maxaod]); 
+  ylim([minval maxval]); 
 end
 xlabel('freq','fontsize',12);
 % set horizontal scale
@@ -69,16 +80,26 @@ medi(3)=nanmean(reshape([XX(:,mwet)],[],1));
 desv(1)=nanstd(reshape(XX,[],1));
 desv(2)=nanstd(reshape(XX(:,mdry),[],1));
 desv(3)=nanstd(reshape([XX(:,mwet)],[],1));
-%disp(['XX dry size']); size(XX(:,mdry))
-%disp(['XX dry total size']); size(reshape(XX(:,mdry),[],1))
-%disp(['XX wet size']); size(XX(:,mwet))
-%disp(['XX wet total size']); size(reshape(XX(:,mwet),[],1))
+% text goes inside the box
 stats=['avg: ' sprintf('%4.2f',medi(1)) ' \pm ' ...
        sprintf(' %4.2f',desv(1)) char(10) ...
        'dry: ' sprintf('%4.2f',medi(2)) ' \pm ' ...
        sprintf(' %4.2f',desv(2)) char (10) ...
        'wet: ' sprintf('%4.2f',medi(3)) ' \pm ' ...
        sprintf(' %4.2f',desv(3)) ];
-annotation('textbox', [pos(1), pos(2)+pos(4)-0.20, 0.15, 0.199], ...
+% average the first 3 months to know where to place the box
+tmp=nanmean(reshape(XX(:,1:3),[],1));
+bxw=0.15;
+byw=0.20;
+bx=pos(1)+pos(3)*0.01;
+if (abs(maxval-tmp) > abs(tmp-minval))
+  % top
+  by=pos(2)+pos(4)-byw-pos(4)*0.02;
+else
+  % bottom
+  by=pos(2)+pos(4)*0.02;
+end
+%annotation('textbox', [pos(1), pos(2)+pos(4)-0.20, 0.15, 0.199], ...
+annotation('textbox', [bx, by, bxw, byw], ...
            'string', stats,'backgroundcolor','w')
 %
