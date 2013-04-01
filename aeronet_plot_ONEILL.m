@@ -39,7 +39,7 @@ print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
 % ---- finefrac
 clf;
-aeronet_plot_ONEILL_points(aero.jd, aero.aot_finefrac, 'Finefrac AOD 500nm',)
+aeronet_plot_ONEILL_points(aero.jd, aero.aot_finefrac, 'Finefrac AOD 500nm')
 out=[aero.file '_aod_finefrac_points.png'];
 print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
