@@ -1,10 +1,11 @@
-function []=aeronet_plot_ONEILL_points(jd, val, ylab)
+function []=aeronet_plot_ONEILL_points(jd, val, ylab, tit)
 % large horizontal plot
 set(gcf,'position',[300,300,800,300]); % units in pixels!
 set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3])
 % climatology on the left side
 sub=subplot('position',[0.08 0.14 0.73 0.76]);
 plot(jd,val,'.');
+title(tit);
 % largest val
 %maxval=max(val(:,1))*1.2;
 %minval=0;
