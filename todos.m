@@ -17,11 +17,11 @@ for i=1:numel(ldir)
   disp('ploting...');
   aeronet_plot_ONEILL;
 
-%  fname=[ldir(i).name '/' ldir(i).name '.lev20'];
-%  disp(['reading: ' fname]);
-%  clear aero;
-%  aero=aeronet_read_lev(fname)
-%  disp('ploting...');
-%  aeronet_plot_lev;
+  fname=[ldir(i).name '/' ldir(i).name '.lev20'];
+  disp(['reading: ' fname]);
+  clear aero;
+  aero=aeronet_read_lev(fname)
+  disp('ploting...');
+  aeronet_plot_lev;
 end
 %
