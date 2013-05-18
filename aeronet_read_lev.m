@@ -95,63 +95,100 @@ end
 %% READ DATA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+disp(['aeronet_read_lev:: reading from file... ']);
+
+% initialize with large size to speedy up memory allocation
+cursize=2^15;
+M(1:cursize, 1:aero.ncols)=NaN;
+
 i=0;
 while ~feof(fid);
-  i=i+1;
   % read just one line, and remove characters
   arow=strrep(fgetl(fid),'N/A','NaN');
   arow=strrep(arow,'/','');
   arow=strrep(arow,':','');
 
   % read line as float
+  clear tmp;
   tmp=textscan(arow,'%f','delimiter',',');
-  M(i,:)=tmp{1};  
+  if (numel(tmp{1})~=aero.ncols)
+    disp(['aeronet_read_lev:: WARN:: Number of columns in line #' ...
+          num2str(i) ' is ' num2str(numel(tmp{1})) ...
+          ' but header has ' num2str(aero.ncols) ' columns!!!']);
+    disp(['aeronet_read_lev:: WARN:: Skipping this line:\n' arow])
+  else
+    i=i+1;
+    if (mod(i,5000)==0)
+      disp(['aeronet_read_lev:: lines read so far: ' num2str(i)]);
+    end
+    % if initial size not large enough, make it twice is large
+    if (i>cursize)
+      cursize=2*cursize;
+      M(i:cursize,1:aero.ncols)=NaN;
+    end
+    M(i,:)=tmp{1};
+  end
 end
 aero.ntimes=i;
 fclose(fid);
 toc
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% CONVERTO DO MATLAB DATA TYPE
+%% CONVERT TO MATLAB DATA TYPE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-for i=1:aero.ntimes
-  jini=1;
-  % Date and Time
-  aero.jd(i,1)=datenum(sprintf('%08d %06d',M(i,jini),M(i,jini+1)),...
-		     'ddmmyyyy HHMMSS');
-  jini=jini+2;
-  % Day of year
-  jini=jini+1;
-  % AOT, nwlen values
-  aero.aot(i,:)=M(i,jini:jini+aero.nwlen-1);
-  jini=jini+aero.nwlen;
-  % water(cm)
-  aero.water(i,1)=M(i,jini);
-  jini=jini+1;
-  % triplets, nwlen values
-  aero.triplet(i,:)=M(i,jini:jini+aero.nwlen-1);
-  jini=jini+aero.nwlen;
-  % water error(cm)
-  aero.water(i,2)=M(i,jini);
-  jini=jini+1;
-  % angstrom, 6 values
-  aero.angstrom(i,:)=M(i,jini:jini+6-1);
-  jini=jini+6;
-  % processing date
-  jini=jini+1;
-  % zenith angle
-  aero.zen(i,1)=M(i,jini);
-  jini=jini+1;
+% memory allocation
+aero.jd(1:aero.ntimes,1)=NaN;
+aero.aot(1:aero.ntimes,1:aero.nwlen)=NaN;
+aero.water(1:aero.ntimes,1:2)=NaN;
+aero.triplet(1:aero.ntimes,1:aero.nwlen)=NaN;
+aero.angstrom(1:aero.ntimes,1:6)=NaN;
+aero.zen(1:aero.ntimes,1)=NaN;
+
+% process each column 
+disp(['aeronet_read_lev:: converting to matlab structure... ']);
+jini=1;
+% Date and Time
+% num2str() will convert with right alignment
+% then we replace empty spaces with zeros
+dates=num2str(M(1:aero.ntimes,jini)); dates(dates==' ')='0';
+times=num2str(M(1:aero.ntimes,jini+1)); times(times==' ')='0';
+aero.jd(1:aero.ntimes,1)=datenum([dates times],'ddmmyyyyHHMMSS');
+jini=jini+2;
+% Day of year
+jini=jini+1;
+% AOT, nwlen values
+aero.aot(1:aero.ntimes,:)=M(1:aero.ntimes,jini:jini+aero.nwlen-1);
+jini=jini+aero.nwlen;
+% water(cm)
+aero.water(1:aero.ntimes,1)=M(1:aero.ntimes,jini);
+jini=jini+1;
+% triplets, nwlen values
+aero.triplet(1:aero.ntimes,:)=M(1:aero.ntimes,jini:jini+aero.nwlen-1);
+jini=jini+aero.nwlen;
+% water error(cm)
+aero.water(1:aero.ntimes,2)=M(1:aero.ntimes,jini);
+jini=jini+1;
+% angstrom, 6 values
+aero.angstrom(1:aero.ntimes,:)=M(1:aero.ntimes,jini:jini+6-1);
+jini=jini+6;
+% processing date
+jini=jini+1;
+% zenith angle
+aero.zen(1:aero.ntimes,1)=M(1:aero.ntimes,jini);
+jini=jini+1;
+
+% if user downloaded file with instrument information...
+if (aero.ncols==63)
   % intrument
-  aero.cimel(i,1)=M(i,jini);
+  aero.cimel(1:aero.ntimes,1)=M(1:aero.ntimes,jini);
   jini=jini+1;
   % exact wavelength, nwlen values
-  aero.wlenexact(i,:)=M(i,jini:jini+aero.nwlen-1);
+  aero.wlenexact(1:aero.ntimes,:)=M(1:aero.ntimes,jini:jini+aero.nwlen-1);
   jini=jini+aero.nwlen;
   % water wave length 
-  aero.water(i,3)=M(i,jini);  
+  aero.water(1:aero.ntimes,3)=M(1:aero.ntimes,jini);  
 end
-toc
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% VERIFY WAVELENGTHS
@@ -166,8 +203,7 @@ for i=1:aero.nwlen
   if ~any(isnan(aero.aot(:,i)))
     aero.allwlen(i)=1;
   end
-
 end
-% set 
+disp(['aeronet_read_lev:: done! ']);
 toc
 %
