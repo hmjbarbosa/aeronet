@@ -48,23 +48,23 @@ YYMMDD_YYMMDD_SITE.<something>
 
 This tables shows which files you get in each case:
 
-AOD Lev.1.0             <site id>.lev10
-AOD Lev.1.5             <site id>.lev15
-AOD Lev.2.0             <site id>.lev20
-Inst. Single File       <site id>.solar_info
-Inst. Merge with AOD    => will be added to "lev" files
-Total OD Lev.1.0        <site id>.tot10
-Total OD Lev.1.5        <site id>.tot15
-Total OD Lev.2.0        <site id>.tot20
-SDA Lev.1.0             <site id>.ONEILL_10
-SDA Lev.1.5             <site id>.ONEILL_15
-SDA Lev.2.0             <site id>.ONEILL_20
+|AOD Lev.1.0             |<site id>.lev10                   |
+|AOD Lev.1.5             |<site id>.lev15                   |
+|AOD Lev.2.0             |<site id>.lev20                   |
+|Inst. Single File       |<site id>.solar_info              |
+|Inst. Merge with AOD    |=> will be added to "lev" files   |
+|Total OD Lev.1.0        |<site id>.tot10                   |
+|Total OD Lev.1.5        |<site id>.tot15                   |
+|Total OD Lev.2.0        |<site id>.tot20                   |
+|SDA Lev.1.0             |<site id>.ONEILL_10               |
+|SDA Lev.1.5             |<site id>.ONEILL_15               |
+|SDA Lev.2.0             |<site id>.ONEILL_20               |
 
 For each of these types of files, you have one routine to read it:
 
-aeronet_read_lev.m => lev10, 15 or 20
-aeronet_read_tot.m => tot10, 15 or 20
-aeronet_read_ONEILL.m => ONEILL_10, 15 or 20
+|aeronet_read_lev.m    |=> lev10, 15 or 20     |
+|aeronet_read_tot.m    |=> tot10, 15 or 20     |
+|aeronet_read_ONEILL.m |=> ONEILL_10, 15 or 20 |
 
 Note that you also have the inversions download page:
 
@@ -73,20 +73,20 @@ https://aeronet.gsfc.nasa.gov/cgi-bin/webtool_opera_v2_inv
 Which has many more download options. The table below lists the files
 you get when you select each of the available variables.
 
-Aerosol Size Distribution	        <site id>.siz
-Complex Index of Refraction	        <site id>.rin
-Coincident Aerosol Optical Depth    <site id>.aot
-Volume Mean Radius, etc..           <site id>.vol
-Absorption Aerosol Optical Depth	<site id>.tab
-Extinction Aerosol Optical Depth	<site id>.aot2
-Single Scattering Albedo	        <site id>.ssa
-Asymmetry Factor	                <site id>.asy
-Phase Functions	                    <site id>.pfn
-                                    <site id>_fine.pfn
- 	                                <site id>_coarse_pfn
-Radiative Forcing	                <site id>.force
-Spectral Flux	                    <site id>.flux
-Combined File                       <site id>.dubovik
+|Aerosol Size Distribution	        |<site id>.siz
+|Complex Index of Refraction	    |    <site id>.rin
+|Coincident Aerosol Optical Depth   | <site id>.aot
+|Volume Mean Radius, etc..          | <site id>.vol
+|Absorption Aerosol Optical Depth	|<site id>.tab
+|Extinction Aerosol Optical Depth	|<site id>.aot2
+|Single Scattering Albedo	        |<site id>.ssa
+|Asymmetry Factor	                |<site id>.asy
+|Phase Functions	                |    <site id>.pfn
+|                                   | <site id>_fine.pfn
+| 	                                |<site id>_coarse_pfn
+|Radiative Forcing	                |<site id>.force
+|Spectral Flux	                    |<site id>.flux
+|Combined File                      | <site id>.dubovik
 
 I did not write routines for reading all of these! I just did for the
 ones I need, which is the size distritions and the absorption optical
