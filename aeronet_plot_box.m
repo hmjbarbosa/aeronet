@@ -1,4 +1,4 @@
-function []=aeronet_plot_ONEILL_box(jd, aot, ylab, mdry, mwet, ylog, tit)
+function []=aeronet_plot_box(jd, aot, ylab, mdry, mwet, ylog, tit)
 
 if ~exist('ylog','var') ylog=0; end
 

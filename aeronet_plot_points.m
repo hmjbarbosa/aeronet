@@ -1,4 +1,4 @@
-function []=aeronet_plot_ONEILL_points(jd, val, ylab, tit)
+function []=aeronet_plot_points(jd, val, ylab, tit)
 % large horizontal plot
 set(gcf,'position',[300,300,800,300]); % units in pixels!
 set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3])
