@@ -73,6 +73,8 @@ https://aeronet.gsfc.nasa.gov/cgi-bin/webtool_opera_v2_inv
 Which has many more download options. The table below lists the files
 you get when you select each of the available variables.
 
+|teste | both
+|------| ----
 |Aerosol Size Distribution	        |<site id>.siz
 |Complex Index of Refraction	    |    <site id>.rin
 |Coincident Aerosol Optical Depth   | <site id>.aot
