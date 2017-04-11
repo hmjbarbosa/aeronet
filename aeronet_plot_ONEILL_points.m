@@ -5,7 +5,7 @@ set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3])
 % climatology on the left side
 sub=subplot('position',[0.08 0.14 0.73 0.76]);
 plot(jd,val,'.');
-title(tit);
+title(tit,'interpreter','none');
 % largest val
 %maxval=max(val(:,1))*1.2;
 %minval=0;
