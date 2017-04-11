@@ -2,6 +2,10 @@ function []=aeronet_plot_ONEILL_box(jd, aot, ylab, mdry, mwet, ylog, tit)
 
 if ~exist('ylog','var') ylog=0; end
 
+if (ylog)
+  aot(aot<=0)=nan;
+end
+
 % large horizontal plot
 set(gcf,'position',[300,300,800,300]); % units in pixels!
 set(gcf,'PaperUnits','inches','PaperPosition',[0 0 8 3])
@@ -15,6 +19,7 @@ for i=1:size(aot,1)
   XX(i,data(2))=aot(i,1);
 end
 boxplot(XX,'whisker',1000);
+title(tit,'interpreter','none');
 % set vertical scale
 %maxval=max(aot)*1.2;
 %minval=0;
@@ -81,7 +86,7 @@ desv(1)=nanstd(reshape(XX,[],1));
 desv(2)=nanstd(reshape(XX(:,mdry),[],1));
 desv(3)=nanstd(reshape([XX(:,mwet)],[],1));
 % text goes inside the box
-stats=['avg: ' sprintf('%4.2f',medi(1)) ' \pm ' ...
+stats=['all: ' sprintf('%4.2f',medi(1)) ' \pm ' ...
        sprintf(' %4.2f',desv(1)) char(10) ...
        'dry: ' sprintf('%4.2f',medi(2)) ' \pm ' ...
        sprintf(' %4.2f',desv(2)) char (10) ...
