@@ -48,6 +48,8 @@ YYMMDD_YYMMDD_SITE.<something>
 
 This tables shows which files you get in each case:
 
+|Option selected | File you get
+|------| ----
 |AOD Lev.1.0             |<site id>.lev10                   |
 |AOD Lev.1.5             |<site id>.lev15                   |
 |AOD Lev.2.0             |<site id>.lev20                   |
@@ -62,6 +64,8 @@ This tables shows which files you get in each case:
 
 For each of these types of files, you have one routine to read it:
 
+|Matlab routine | File it applies to
+|------| ----
 |aeronet_read_lev.m    |=> lev10, 15 or 20     |
 |aeronet_read_tot.m    |=> tot10, 15 or 20     |
 |aeronet_read_ONEILL.m |=> ONEILL_10, 15 or 20 |
@@ -73,7 +77,7 @@ https://aeronet.gsfc.nasa.gov/cgi-bin/webtool_opera_v2_inv
 Which has many more download options. The table below lists the files
 you get when you select each of the available variables.
 
-|teste | both
+|Option selected | File you get
 |------| ----
 |Aerosol Size Distribution	        |<site id>.siz
 |Complex Index of Refraction	    |    <site id>.rin
