@@ -1,3 +1,11 @@
+% example for standard files (lev)
+
+clear all
+close all
+
+% read data
+fname='ExampleData/990101_021231_Balbina.lev20';
+aero=aeronet_read_lev(fname);
 
 figure(1); 
 
@@ -7,28 +15,24 @@ mask=~any(aero.angstrom'<0)';
 mask=mask&(aero.water(:,1)<6);
 
 % ---- angstrom
-clf;
-aeronet_plot_ONEILL_points(aero.jd(mask), aero.angstrom(mask,3), 'Angstrom 440-675nm')
-out=[aero.file '_angstrom_points.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+figure(1); clf;
+aeronet_plot_ONEILL_points(aero.jd(mask), aero.angstrom(mask,3), 'Angstrom 440-675nm',fname)
+%out=[aero.file '_angstrom_points.png'];
+%print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
-clf;
+figure(2); clf;
 aeronet_plot_ONEILL_box(aero.jd(mask), aero.angstrom(mask,3), 'Angstrom 440-675nm',...
-                        [7:11], [1:6,12] )
-out=[aero.file '_angstrom_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12], 0, fname)
+%out=[aero.file '_angstrom_box.png'];
+%print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
 % ---- water
-clf;
-aeronet_plot_ONEILL_points(aero.jd(mask), aero.water(mask,1), 'Water (cm)')
-out=[aero.file '_water_points.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+figure(3); clf;
+aeronet_plot_ONEILL_points(aero.jd(mask), aero.water(mask,1), 'Water (cm)', fname)
 
-clf;
+figure(4); clf;
 aeronet_plot_ONEILL_box(aero.jd(mask), aero.water(mask,1), 'Water (cm)',...
-                        [7:11], [1:6,12] )
-out=[aero.file '_water_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12], 0 , fname)
 %
 
 

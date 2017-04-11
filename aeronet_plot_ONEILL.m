@@ -1,52 +1,46 @@
+% example for SDA files 
 
-figure(1); 
+clear all
+close all
+
+% read data
+fname='ExampleData/990101_021231_Balbina.ONEILL_20';
+aero=aeronet_read_ONEILL(fname);
 
 % ---- total
-clf;
+figure(1); clf;
 aeronet_plot_ONEILL_points(aero.jd, aero.aot_total(:,1), 'Total AOD 500nm',fname)
-out=[aero.file '_aod_total_points.png']; 
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+%out=[aero.file '_aod_total_points.png']; 
+%print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
-clf;
+figure(2); clf;
 aeronet_plot_ONEILL_box(aero.jd, aero.aot_total(:,1), 'Total AOD 500nm',...
-                        [7:11], [1:6,12],fname)
-out=[aero.file '_aod_total_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12],1,fname)
+%out=[aero.file '_aod_total_box.png'];
+%print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
 % ---- fine
-clf;
+figure(3); clf;
 aeronet_plot_ONEILL_points(aero.jd, aero.aot_fine(:,1), 'Fine AOD 500nm',fname)
-out=[aero.file '_aod_fine_points.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
-clf;
+figure(4); clf;
 aeronet_plot_ONEILL_box(aero.jd, aero.aot_fine(:,1), 'Fine AOD 500nm',...
-                        [7:11], [1:6,12],fname)
-out=[aero.file '_aod_fine_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12],1,fname)
 
 % ---- coarse
-clf;
+figure(5); clf;
 aeronet_plot_ONEILL_points(aero.jd, aero.aot_coarse(:,1), 'Coarse AOD 500nm',fname)
-out=[aero.file '_aod_coarse_points.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
-clf;
+figure(6); clf;
 aeronet_plot_ONEILL_box(aero.jd, aero.aot_coarse(:,1), 'Coarse AOD 500nm',...
-                        [7:11], [1:6,12],fname)
-out=[aero.file '_aod_coarse_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12],1,fname)
 
 % ---- finefrac
-clf;
+figure(7); clf;
 aeronet_plot_ONEILL_points(aero.jd, aero.aot_finefrac(:,1), 'Finefrac AOD 500nm',fname)
-out=[aero.file '_aod_finefrac_points.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
 
-clf;
+figure(8); clf;
 aeronet_plot_ONEILL_box(aero.jd, aero.aot_finefrac(:,1), 'Finefrac AOD 500nm',...
-                        [7:11], [1:6,12],fname)
-out=[aero.file '_aod_finefrac_box.png'];
-print(out,'-dpng'); eval(['!mogrify -trim ' out]);
+                        [6:8], [1:2,12],1,fname)
 
 

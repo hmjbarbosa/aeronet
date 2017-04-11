@@ -73,7 +73,7 @@ depth. If you want to addapt one of my scripts to read the others
 files, fell free to do so. I would be glad to review it and include it
 in here.
 
-## Example. 
+## Examples 
 
 If you have not done so yet, download the big zip
 file (25Mb) and uncompress it. You should then have a folder
