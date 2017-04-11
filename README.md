@@ -78,10 +78,36 @@ in here.
 If you have not done so yet, download the big zip
 file (25Mb) and uncompress it. You should then have a folder
 ExampleData/ with a bunch of files for 'Balbina' site inside.
+The following files give examples of how you can read and plot the data:
+
+```
+example_plot_lev.m
+example_plot_ONEILL.m
+example_plot_siz.m
+```
+
+There are two more generic ploting function that are used in these. They
+will either to a time series + a histrogram. Or a box plot (for each month)
+and the histograms. The histograms are shown for differente seasons.
+The functions are:
+
+```
+aeronet_plot_points.m
+aeronet_plot_box.m
+```
+
+### Angstrom and Water vapour
+
+Open Matlab and run ```example_plot_lev.m```. You will have plots for
+Angstrom and Water Vapour, which will be made in two different styles (the
+two scripts above). These will look like this:
+
+![linear](lev1.png)
+![log](lev2.png)
 
 ### Size distribution
 
-Now open matlab and run the example script 'aeronet_plot_siz.m'.
+Now open Matlab and run the example script 'aeronet_plot_siz.m'.
 You should get two plots for the size distributions.
 
 ![size distribution by month](size1.png)
