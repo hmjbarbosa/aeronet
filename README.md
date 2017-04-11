@@ -13,36 +13,6 @@ And select some station. You will be presented with a menu for
 selecting the time interval, and also the products and level you
 want. The page will look like this: 
 
-```
-------------------------------------------------------------
-Download Data for Ji_Parana
-Select the start and end time of the data download period:
-START:	Day/Month/Year           END:	Day/Month/Year
-
-Direct Sun Products	             Select
-
-Aerosol Optical Depth (AOD)      Level 1.0 
-with PW and Angstrom             Level 1.5 
-                                 Level 2.0 
-
-Instrument Information           Single File 
-                                 Merge with AOD 
-
-                                 Level 1.0
-Total Optical Depth*             Level 1.5
-                                 Level 2.0
-
-(SDA) Retrievals --              Level 1.0
-Fine Mode AOD, etc.              Level 1.5
-                                 Level 2.0
-
-Data Format
-() All Points   () Daily Averages       () Monthly Averages
-
-DOWNLOAD
-------------------------------------------------------------
-```
-
 ![download page form Aeronet](picdownload.png)
 
 When you select what you want and click on download, you'll get a zip
@@ -103,9 +73,19 @@ depth. If you want to addapt one of my scripts to read the others
 files, fell free to do so. I would be glad to review it and include it
 in here.
 
-Let's do an example. If you have not done so yet, download the big zip
+## Example. 
+
+If you have not done so yet, download the big zip
 file (25Mb) and uncompress it. You should then have a folder
 ExampleData/ with a bunch of files for 'Balbina' site inside.
+
+### Size distribution
+
 Now open matlab and run the example script 'aeronet_plot_siz.m'.
 You should get two plots for the size distributions.
+
+![size distribution by month](size1.png)
+
+![size distribution per season](size2.png)
+
 
