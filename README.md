@@ -1,8 +1,9 @@
-aeronet
-=======
+# aeronet
+---
 
-Matlab routines to analyze NASA Aeronet sunphotometer data. Well, not
-really analyze, mostly read and plot. Here is what you need to do.
+These are my personal Matlab routines to analyze NASA Aeronet
+sunphotometer data. Well, not really analyze, mostly read and
+plot. Here is what you need to do.
 
 First, go to the download page:
 
@@ -12,6 +13,7 @@ And select some station. You will be presented with a menu for
 selecting the time interval, and also the products and level you
 want. The page will look like this: 
 
+```
 ------------------------------------------------------------
 Download Data for Ji_Parana
 Select the start and end time of the data download period:
@@ -39,6 +41,7 @@ Data Format
 
 DOWNLOAD
 ------------------------------------------------------------
+```
 
 When you select what you want and click on download, you'll get a zip
 file with all the data inside. See the folder ExampleData/ for an
@@ -80,16 +83,14 @@ you get when you select each of the available variables.
 |Option selected | File you get
 |------| ----
 |Aerosol Size Distribution	        |<site id>.siz
-|Complex Index of Refraction	    |    <site id>.rin
-|Coincident Aerosol Optical Depth   | <site id>.aot
-|Volume Mean Radius, etc..          | <site id>.vol
+|Complex Index of Refraction	    |<site id>.rin
+|Coincident Aerosol Optical Depth   |<site id>.aot
+|Volume Mean Radius, etc..          |<site id>.vol
 |Absorption Aerosol Optical Depth	|<site id>.tab
 |Extinction Aerosol Optical Depth	|<site id>.aot2
 |Single Scattering Albedo	        |<site id>.ssa
 |Asymmetry Factor	                |<site id>.asy
-|Phase Functions	                |    <site id>.pfn
-|                                   | <site id>_fine.pfn
-| 	                                |<site id>_coarse_pfn
+|Phase Functions	                |<site id>.pfn, <site id>_fine.pfn and <site id>_coarse_pfn
 |Radiative Forcing	                |<site id>.force
 |Spectral Flux	                    |<site id>.flux
 |Combined File                      | <site id>.dubovik
